@@ -18,6 +18,7 @@ public class DonateArticleService implements IDonateArticleService {
     public List<DonateArticle> getAllArticles(){
     List<DonateArticle> donateArticles=new ArrayList<>();
         donateArticles.addAll(donateArticleRepository.findAll());
+
     return donateArticles;
     }
 

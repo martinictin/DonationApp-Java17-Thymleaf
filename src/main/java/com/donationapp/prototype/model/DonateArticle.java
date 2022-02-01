@@ -12,7 +12,7 @@ public class DonateArticle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int articleId;
 
-    //@Basic(optional = false)
+    @Basic(optional = false)
     @Column
     private String articleName;
     @Column
