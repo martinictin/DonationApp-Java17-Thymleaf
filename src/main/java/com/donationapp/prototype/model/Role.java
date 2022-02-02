@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name="roles")
+@Table(name="role")
 @Data
 public class Role {
     @Id
@@ -15,4 +15,12 @@ public class Role {
     @Enumerated(EnumType.STRING)
     @Column
     private ERole roleName;
+
+    public Role (String roleName){
+        this.roleName= ERole.valueOf(roleName);
+    }
+
+    public Role() {
+
+    }
 }

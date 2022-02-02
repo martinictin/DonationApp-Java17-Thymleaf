@@ -7,10 +7,9 @@
         <meta name="author" content="" />
         <title>Blog Home - Start Bootstrap Template</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="@{static/assets/favicon.ico}" />
+        <link rel="icon" type="image/x-icon" href="@{/assets/favicon.ico}" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
-        <link th:rel="stylesheet" th:href="@{/assets/jquery-steps/jquery.steps.css} "/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -41,7 +40,7 @@
         <div class="container">
             <div class="row">
                 <!-- Blog entries-->
-                <div class="container">
+                <div class="col-lg-8">
                     <div class="card mb-4">
                         <div class="card-header">Search</div>
                         <div class="card-body">
@@ -117,14 +116,21 @@
                         </ul>
                     </nav>
                 </div>
+                <!-- Side widgets-->
+                <div class="col-lg-4">
+                    <!-- Search widget-->
 
+
+                </div>
             </div>
         </div>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+        </footer>
         <!-- Bootstrap core JS-->
-        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-        <script th:src="@{assets/jquery-steps/jquery.steps.min.js}"></script>
-        <script th:src="@{assets/jquery-validate/jquery.validate.min.js}"></script>
-        </body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="@{/js/scripts.js}"></script>
+    </body>
 </html>
