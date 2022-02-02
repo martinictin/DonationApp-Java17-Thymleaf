@@ -17,7 +17,7 @@ public class UserService implements IUserService{
     @Autowired
     UserRepository userRepository;
 
-   public User save(SignUpRequest signUpRequest){
+    public User saveUser(SignUpRequest signUpRequest){
        User user=new User(signUpRequest.getUsername(),
                signUpRequest.getEmail(),
                signUpRequest.getPassword(),
@@ -25,6 +25,7 @@ public class UserService implements IUserService{
 
        return  userRepository.save(user);
    }
+
     public List<User> getAll(){
         List<User> userList=new ArrayList<>();
         userRepository.findAll().forEach(userList::add);

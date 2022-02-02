@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8"/>
-  <title>Spring Boot Thymeleaf Application - Bootstrap Wizard</title>
+  <title>Register-Donation</title>
 
   <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
   <link th:rel="stylesheet" th:href="@{/assets/jquery-steps/jquery.steps.css} "/>
@@ -12,30 +12,12 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
   <div class="container">
-    <a class="navbar-brand" href="/">Thymeleaf - Bootstrap Wizard</a>
+    <a class="navbar-brand" href="/">Donation</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
             aria-controls="navbarResponsive"
             aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-      </ul>
-    </div>
   </div>
 </nav>
 
@@ -45,13 +27,13 @@
     <div class="col">
       <h2 class="mt-5">Create user</h2>
 
-      <form id="example-advanced-form" action="/user" method="post" th:object="${user}">
+      <form id="example-advanced-form" action="/register" method="post" th:object="${user}">
         <fieldset>
           <legend>Account Information</legend>
 
           <div class="row">
             <div class="col-5">
-              <div class="form-group">
+              <div class="user">
                 <label for="userName-2">User name</label>
                 <input id="userName-2" name="username" th:field="*{username}" type="text" class="form-control required">
               </div>

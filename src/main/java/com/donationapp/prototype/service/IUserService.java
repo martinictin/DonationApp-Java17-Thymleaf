@@ -6,7 +6,7 @@ import com.donationapp.prototype.model.User;
 import java.util.List;
 
 public interface IUserService {
-    User save(SignUpRequest signUpRequest);
+    User saveUser(SignUpRequest signUpRequest);
     List<User> getAll();
     User getUser(int id);
     void deleteUser(int id);
