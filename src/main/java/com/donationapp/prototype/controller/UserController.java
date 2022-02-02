@@ -1,6 +1,7 @@
 package com.donationapp.prototype.controller;
 
 import com.donationapp.prototype.model.User;
+import com.donationapp.prototype.repository.UserRepository;
 import com.donationapp.prototype.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,9 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    UserRepository userRepository;
+
     @GetMapping("/allusers")
     public List<User> getAllUsers(){return userService.getAll();}
 
@@ -27,6 +31,7 @@ public class UserController {
 
     @PostMapping("/user")
     public String submit(User user, Model model) {
+        userRepository.save(user);
         model.addAttribute("user", user);
         return "saved";
     }
