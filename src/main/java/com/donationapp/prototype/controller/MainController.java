@@ -27,7 +27,7 @@ public class MainController {
     @Autowired
     DonateArticleRepository donateArticleRepository;
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String viewMainPage(Model model) throws ClassNotFoundException, SQLException {
         userService.fromDbToRepo();
         donateArticleService.fromDbToRepo();

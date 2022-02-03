@@ -58,7 +58,7 @@ public class UserService implements IUserService{
             user.setUserId(rs.getInt("user_id"));
             user.setUsername(rs.getString("username"));
             user.setEmail(rs.getString("email"));
-            user.setUserPassword(rs.getString("user-password"));
+            user.setUserPassword(rs.getString("user_password"));
             userRepository.save(user);
         }
         st.close();
