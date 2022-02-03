@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Register-Donation</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/assets/jquery-steps/jquery.steps.css} "/>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">Donation</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2 class="mt-5">Create donation</h2>
+
+            <form id="example-advanced-form" action="/registerDonationArticle" method="post" th:object="${donateArticle}">
+                <fieldset>
+                    <legend>Account Information</legend>
+
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="user">
+                                <label for="userName-2">Donation name</label>
+                                <input id="userName-2" name="username" th:field="*{articleName}" type="text" class="form-control required">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email-2">Short description</label>
+                                <input id="email-2" name="email" th:field="*{description}" type="text" class="form-control required email">
+                            </div>
+
+
+
+                            <input type="submit" value="Submit" class="btn btn-primary"/>
+
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{assets/jquery-steps/jquery.steps.min.js}"></script>
+<script th:src="@{assets/jquery-validate/jquery.validate.min.js}"></script>
+
+</body>
+</html>
