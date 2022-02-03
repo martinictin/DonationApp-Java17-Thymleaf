@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -23,16 +22,17 @@ public class UserController {
     @GetMapping("/allusers")
     public List<User> getAllUsers(){return userService.getAll();}
 
-    @GetMapping("/userRegister")
-    public String register(Model model) {
-        model.addAttribute("user", new User());
-        return "register";
+    @GetMapping("/registerUser")
+    public String showRegistrationForm(Model model){
+        model.addAttribute("user",new User());
+        return "userRegister";
     }
 
-    @PostMapping("/user")
-    public String submit(User user, Model model) {
+    @PostMapping("/registerUser")
+    public String registerUserAccount(Model model,User user){
         userRepository.save(user);
-        model.addAttribute("user", user);
-        return "saved";
+        model.addAttribute("user",user);
+        return "index";
     }
+
 }

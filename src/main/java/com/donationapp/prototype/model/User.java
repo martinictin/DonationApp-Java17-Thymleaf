@@ -24,9 +24,6 @@ public class User {
     @Column
     private String userPassword;
 
-    /**
-     * Set relations manytomany over user_roles between tables User and Role
-     */
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",

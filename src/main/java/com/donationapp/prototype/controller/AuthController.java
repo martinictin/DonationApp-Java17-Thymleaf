@@ -15,18 +15,7 @@ public class AuthController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/register")
-    public String showRegistrationForm(Model model){
-        model.addAttribute("user",new User());
-        return "register";
-    }
 
-    @PostMapping("/register")
-    public String registerUserAccount(Model model,User user){
-        userRepository.save(user);
-        model.addAttribute("user",user);
-        return "index";
-    }
 
 
     @GetMapping("/login")
