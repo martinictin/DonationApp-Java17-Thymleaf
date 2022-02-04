@@ -37,24 +37,24 @@
                         </div>
                     </div>
                     <tr th:each="donate : ${donateArticle}">
-                        <td th:text="${donate.articleName}">Name</td>
-                        <td th:text="${donate.description}">Position</td>
-                    </tr>
-                    <div class="row">
-                        <div class="mx-auto"  style="width: 700px;">
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="small text-muted">January 1, 2021</div>
-                                    <h2 class="card-title h4">Post Title</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                    <a class="btn btn-primary" href="#!">Read more →</a>
+                        <div class="row">
+                            <div class="mx-auto"  style="width: 700px;">
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <td th:text="${donate.articleName}" class="card-title h4">Name</td>
+                                        <p><td th:text="${donate.description}" class="card-text">Position</td></p>
+                                        <a class="btn btn-primary" href="#!">Read more →</a>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                    </tr>
+
                             <!-- Blog post-->
 
-                        </div>
 
-                    </div>
+
+
                     <!-- Pagination-->
                     <nav aria-label="Pagination">
                         <hr class="my-0" />
