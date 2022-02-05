@@ -42,15 +42,26 @@
                             <div class="mx-auto"  style="width: 700px;">
                                 <div class="card mb-4">
                                     <div class="card-body">
-                                        <td th:text="${post.articleName}" class="card-title h4">Name</td>
-                                        <p><td th:text="${post.description}" class="card-text">Position</td></p>
-                                        <a class="btn btn-primary" href="#!">Read more →</a>
+                                        <td th:text="${post.articleName}" class="card-title h4"></td>
+                                        <p><td th:text="${post.description}" class="card-text"></td></p>
+                                        <form th:action="@{/input}" method='POST'  th:object="${amount}" modelAtribute="amount"  placeholder="Donation">
+                                            <input type="text" th:field="*{amount}" placeholder="string" />
+                                            <input type="hidden" th:value="${post.secretKey}" th:name="secretKey" placeholder="string" />
+                                            <script
+                                                    src='https://checkout.stripe.com/checkout.js'
+                                                    class='stripe-button'
+                                                    th:attr='data-key=${post.getPublicKey()},
+                                                                        data-currency=${EUR},
+                                                                        data-name=${post.articleName}'
+                                            >
+                                            </script>
+                                        </form>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </tr>
-
 
                     <nav aria-label="Page navigation" class="paging">
                         <ul class="pagination" th:if="${posts.page.totalPages > 1}">

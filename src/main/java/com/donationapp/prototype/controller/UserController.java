@@ -32,7 +32,7 @@ public class UserController {
     public String registerUserAccount(Model model,User user){
         userRepository.save(user);
         model.addAttribute("user",user);
-        return "index";
+        return "userSaved";
     }
 
 }

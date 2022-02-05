@@ -35,7 +35,7 @@ public class DonateArticleController {
     public String registerUserAccount(Model model,DonateArticle donateArticle){
         donateArticleRepository.save(donateArticle);
         model.addAttribute("donateArticle",donateArticle);
-        return "index";
+        return "donationSaved";
     }
 
 

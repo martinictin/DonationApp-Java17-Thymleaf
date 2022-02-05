@@ -21,5 +21,8 @@ public class DonateArticle {
     private String url;
     @Column
     private String description;
-
+    @Column
+    private String publicKey;
+    @Column
+    private String secretKey;
 }
