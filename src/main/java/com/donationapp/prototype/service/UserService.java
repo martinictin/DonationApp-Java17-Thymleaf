@@ -7,6 +7,7 @@ import com.donationapp.prototype.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,6 +42,26 @@ public class UserService implements IUserService{
             return user;
         }
         return tempUser.get();
+    }
+
+    public void fromDbToRepo() throws SQLException, ClassNotFoundException {
+        String myDriver = "com.mysql.cj.jdbc.Driver";
+        String myUrl = "jdbc:mysql://localhost:3306/donationdb";
+        Class.forName(myDriver);
+        String query = "SELECT * FROM users";
+        Connection conn = DriverManager.getConnection(myUrl, "root", "admin");
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        while (rs.next())
+        {
+            User user = new User();
+            user.setUserId(rs.getInt("user_id"));
+            user.setUsername(rs.getString("username"));
+            user.setEmail(rs.getString("email"));
+            user.setUserPassword(rs.getString("user_password"));
+            userRepository.save(user);
+        }
+        st.close();
     }
 
 

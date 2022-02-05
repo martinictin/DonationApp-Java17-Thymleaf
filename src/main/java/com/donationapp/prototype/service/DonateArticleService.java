@@ -1,10 +1,12 @@
 package com.donationapp.prototype.service;
 
 import com.donationapp.prototype.model.DonateArticle;
+import com.donationapp.prototype.model.User;
 import com.donationapp.prototype.repository.DonateArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +36,23 @@ public class DonateArticleService implements IDonateArticleService {
 
     }
 
+    public void fromDbToRepo() throws SQLException, ClassNotFoundException {
+        String myDriver = "com.mysql.cj.jdbc.Driver";
+        String myUrl = "jdbc:mysql://localhost:3306/donationdb";
+        Class.forName(myDriver);
+        String query = "SELECT * FROM donate_article";
+        Connection conn = DriverManager.getConnection(myUrl, "root", "admin");
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        while (rs.next()) {
+            DonateArticle donateArticle = new DonateArticle();
+            donateArticle.setArticleId(rs.getInt("article_id"));
+            donateArticle.setArticleName(rs.getString("article_name"));
+            donateArticle.setDescription(rs.getString("description"));
+            donateArticleRepository.save(donateArticle);
+        }
+        st.close();
+    }
 
 
     public void update(DonateArticle donateArticle){
