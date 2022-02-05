@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.*;
 
@@ -27,6 +28,7 @@ public class MainController {
     @Autowired
     DonateArticleRepository donateArticleRepository;
 
+    /*
     @GetMapping("/")
     public String viewMainPage(Model model) throws ClassNotFoundException, SQLException {
         userService.fromDbToRepo();
@@ -35,6 +37,17 @@ public class MainController {
         model.addAttribute("donateArticle",donateArticleRepository.findAll());
         return "index";
     }
+
+     */
+    @GetMapping("/")
+    public String posts(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
+                        @RequestParam(value = "size", required = false, defaultValue = "5") int size, Model model) throws SQLException, ClassNotFoundException {
+        userService.fromDbToRepo();
+        donateArticleService.fromDbToRepo();
+        model.addAttribute("posts", donateArticleService.getPage(pageNumber, size));
+        return "index";
+    }
+
 
 
 
