@@ -11,7 +11,6 @@ public class PrototypeApplication {
 
 	public static void main(String[] args) throws SQLException {
 		SpringApplication.run(PrototypeApplication.class, args);
-
 	}
 
 

@@ -1,9 +1,16 @@
 package com.donationapp.prototype.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Collections;
 
 @Entity
 @Table(name="users",
@@ -12,41 +19,63 @@ import java.util.Collection;
             @UniqueConstraint(columnNames = "email")
         })
 @Data
-public class User {
+@EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
 
-    @Column
     private String username;
-    @Column
     private String email;
-    @Column
     private String userPassword;
+    @Enumerated(EnumType.STRING)
+    private ERole userRole;
+    private Boolean locked=false;
+    private Boolean enabled=false;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(
-                    name = "user_id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "role_id"))
-
-    private Collection<Role> roles;
-
-    public User(String username,String email,String userPassword){
+    public User(String username, String email, String password,ERole eRole) {
         this.username=username;
         this.email=email;
-        this.userPassword=userPassword;
-    }
-    public User(){
-
+        this.userPassword=password;
+        this.userRole=eRole;
     }
 
-    public <T> User(String username, String email, String password, Role role_user) {
-        this.username=username;
-        this.email=email;
-        this.userPassword=userPassword;
-        this.roles.add(role_user);
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority=new SimpleGrantedAuthority(userRole.name());
+        return Collections.singletonList(authority);
+    }
+
+    @Override
+    public String getUsername(){
+        return username;
+    }
+
+    @Override
+    public String getPassword() {
+        return userPassword;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !locked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
     }
 }
