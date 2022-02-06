@@ -1,6 +1,6 @@
 package com.donationapp.prototype.service;
 
-import com.donationapp.prototype.config.token.email.EmailSender;
+import com.donationapp.prototype.config.email.EmailSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.JavaMailSender;

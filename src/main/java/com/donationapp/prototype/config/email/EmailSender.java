@@ -1,4 +1,4 @@
-package com.donationapp.prototype.config.token.email;
+package com.donationapp.prototype.config.email;
 
 public interface EmailSender {
     void send(String to,String email);
