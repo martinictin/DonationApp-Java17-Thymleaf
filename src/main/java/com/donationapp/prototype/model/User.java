@@ -42,7 +42,6 @@ public class User implements UserDetails {
         this.userRole=eRole;
     }
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority=new SimpleGrantedAuthority(userRole.name());
