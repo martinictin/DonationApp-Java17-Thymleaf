@@ -1,6 +1,5 @@
 package com.donationapp.prototype.controller;
 
-import com.donationapp.prototype.model.Amount;
 import com.donationapp.prototype.model.ChargeRequest;
 import com.donationapp.prototype.repository.DonateArticleRepository;
 import com.donationapp.prototype.repository.UserRepository;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -58,13 +56,13 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/input")
+    @GetMapping("/result")
     public String input(Model model) {
         model.addAttribute("amount",new ChargeRequest() ); // in cents
         return "index";
     }
 
-    @PostMapping("/input")
+    @PostMapping("/result")
     public String output(ChargeRequest chargeRequest, Model model) throws StripeException {
         chargeRequest.setDescription("Donation");
         chargeRequest.setCurrency(ChargeRequest.Currency.EUR);

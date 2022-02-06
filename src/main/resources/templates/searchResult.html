@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Donation</title>
+
+  <link rel="icon" type="image/x-icon" href="@{/assets/favicon.ico}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">Donation</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+  </div>
+</nav>
+<header class="py-5 bg-light border-bottom mb-4">
+  <div class="container">
+    <div class="text-center my-5">
+      <h1 class="fw-bolder">Search results</h1>
+    </div>
+  </div>
+</header>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto"  style="width: 1000px;">
+      <div class="card mb-4">
+        <div class="card-header">Search</div>
+        <div class="card-body">
+          <div class="input-group">
+            <form th:action="@{/search}" method="get">
+              <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find donation by name" size="80" >
+              <button type="submit" class="btn btn-info" >Search</button>
+              <a href='/' class="btn btn-info" >Reset    </a>
+            </form>
+          </div>
+        </div>
+      </div>
+      <tr th:each="post : ${posts}">
+        <div class="row">
+          <div class="mx-auto"  style="width: 700px;">
+            <div class="card mb-4">
+              <div class="card-body">
+                <td th:text="${post.articleName}" class="card-title h4"></td>
+                <p><td th:text="${post.description}" class="card-text"></td></p>
+                <form th:action="@{/result}" method='POST'  th:object="${amount}" modelAtribute="amount"  placeholder="Donation">
+                  <input type="text" th:field="*{amount}"   size="7" > € </input>
+                  <input type="hidden" th:value="${post.secretKey}" th:name="secretKey" placeholder="string" />
+                  <br>
+                  <br>
+                  <script
+                          src='https://checkout.stripe.com/checkout.js'
+                          class='stripe-button'
+                          th:attr='data-key=${post.getPublicKey()},data-name=${post.articleName}'>
+                  </script>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </tr>
+
+
+    </div>
+  </div>
+</div>
+
+<footer class="py-5 bg-dark">
+  <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

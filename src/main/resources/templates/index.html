@@ -20,8 +20,7 @@
         <header class="py-5 bg-light border-bottom mb-4">
             <div class="container">
                 <div class="text-center my-5">
-                    <h1 class="fw-bolder">Welcome to Blog Home!</h1>
-                    <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
+                    <h1 class="fw-bolder">Main page</h1>
                 </div>
             </div>
         </header>
@@ -32,8 +31,10 @@
                         <div class="card-header">Search</div>
                         <div class="card-body">
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                                <form th:action="@{/search}" method="get">
+                                    <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find by Owner Name & Shop Type" size="80" >
+                                    <button type="submit" class="btn btn-info" >Search</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -44,16 +45,15 @@
                                     <div class="card-body">
                                         <td th:text="${post.articleName}" class="card-title h4"></td>
                                         <p><td th:text="${post.description}" class="card-text"></td></p>
-                                        <form th:action="@{/input}" method='POST'  th:object="${amount}" modelAtribute="amount"  placeholder="Donation">
-                                            <input type="text" th:field="*{amount}" placeholder="string" />
+                                        <form th:action="@{/result}" method='POST'  th:object="${amount}" modelAtribute="amount"  placeholder="Donation">
+                                            <input type="text" th:field="*{amount}"   size="7" > € </input>
                                             <input type="hidden" th:value="${post.secretKey}" th:name="secretKey" placeholder="string" />
+                                            <br>
+                                            <br>
                                             <script
                                                     src='https://checkout.stripe.com/checkout.js'
                                                     class='stripe-button'
-                                                    th:attr='data-key=${post.getPublicKey()},
-                                                                        data-currency=${EUR},
-                                                                        data-name=${post.articleName}'
-                                            >
+                                                    th:attr='data-key=${post.getPublicKey()},data-name=${post.articleName}'>
                                             </script>
                                         </form>
 

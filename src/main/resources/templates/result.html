@@ -5,16 +5,15 @@
     </head>
     <body>
 
-            <h3 style='color: green;'>Success!</h3>
-            <div>Id.: <span th:text='${id}' /></div>
-            <div>Status: <span th:text='${status}' /></div>
-            <div>Date: <span th:text ='${date}' /> </div>
-            <div>Amount: <span th:text='${amount/100}' /></div>
-            <div>Currency: <span th:text='${currency}' /></div>
-            <div>Charge id.: <span th:text='${chargeId}' /></div>
-            <div>Balance transaction id.: <span th:text='${balance_transaction}' /></div>
+            <h3 style='color: green;'>Payment successful!</h3>
+            <div>Id.: <span th:text='${id}'></span></div>
+            <div>Status: <span th:text='${status}'></span></div>
+            <div>Date: <span th:text ='${date}'></span> </div>
+            <div>Amount: <span th:text='${amount/100}'></span></div>
+            <div>Currency: <span th:text='${currency}'></span></div>
+            <div>Charge id.: <span th:text='${chargeId}'></span></div>
+            <div>Balance transaction id.: <span th:text='${balance_transaction}'></span></div>
 
-        </div>
-        <a href='/'>Back    </a>
+            <a href='/'>Back    </a>
     </body>
 </html>

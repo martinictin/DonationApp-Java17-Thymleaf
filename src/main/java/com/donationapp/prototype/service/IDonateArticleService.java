@@ -14,4 +14,6 @@ public interface IDonateArticleService {
     void fromDbToRepo() throws SQLException, ClassNotFoundException;
     Paged<DonateArticle> getPage(int pageNumber, int size);
 
+
+
 }

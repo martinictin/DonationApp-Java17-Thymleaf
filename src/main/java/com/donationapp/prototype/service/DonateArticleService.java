@@ -73,4 +73,5 @@ public class DonateArticleService implements IDonateArticleService {
         Page<DonateArticle> postPage = donateArticleRepository.findAll(request);
         return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), pageNumber, size));
     }
+
 }
