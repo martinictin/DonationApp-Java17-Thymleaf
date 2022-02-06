@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping(path="/admin")
+@RequestMapping(value="/admin")
 public class UserController {
     @Autowired
     UserService userService;
