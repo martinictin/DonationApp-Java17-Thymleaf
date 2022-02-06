@@ -19,7 +19,6 @@ import java.util.Calendar;
 
 
 @Controller
-@RequestMapping(path="/user")
 public class MainController {
 
     @Autowired

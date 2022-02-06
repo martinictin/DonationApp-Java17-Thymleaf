@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @AllArgsConstructor
@@ -30,9 +31,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user").hasAnyRole("USER","ADMIN")
-                .anyRequest().authenticated()
+                .antMatchers("/**").hasAnyRole("USER","ADMIN")
+                .anyRequest().permitAll()
                 .and().formLogin().permitAll();
+
+
+        http
+                .csrf().disable().cors().disable()
+                .formLogin().failureUrl("/login?error")
+                .loginPage("/login").permitAll()
+                .and()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/?logout").deleteCookies("remember-me").permitAll()
+                .and()
+                .rememberMe();
     }
 
     @Override
