@@ -1,9 +1,12 @@
 package com.donationapp.prototype.service;
 
 import com.donationapp.prototype.model.DonateArticle;
-import com.donationapp.prototype.model.User;
+import com.donationapp.prototype.model.paging.Paged;
+import com.donationapp.prototype.model.paging.Paging;
 import com.donationapp.prototype.repository.DonateArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
@@ -49,6 +52,8 @@ public class DonateArticleService implements IDonateArticleService {
             donateArticle.setArticleId(rs.getInt("article_id"));
             donateArticle.setArticleName(rs.getString("article_name"));
             donateArticle.setDescription(rs.getString("description"));
+            donateArticle.setPublicKey(rs.getString("public_key"));
+            donateArticle.setSecretKey(rs.getString("secret_key"));
             donateArticleRepository.save(donateArticle);
         }
         st.close();
@@ -62,4 +67,11 @@ public class DonateArticleService implements IDonateArticleService {
     public void delete(int id){
         donateArticleRepository.deleteById(id);
     }
+
+    public Paged<DonateArticle> getPage(int pageNumber, int size) {
+        PageRequest request = PageRequest.of(pageNumber - 1, size);
+        Page<DonateArticle> postPage = donateArticleRepository.findAll(request);
+        return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), pageNumber, size));
+    }
+
 }

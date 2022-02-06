@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:th='http://www.thymeleaf.org'>
+    <head>
+        <title>Result</title>
+    </head>
+    <body>
+
+            <h3 style='color: green;'>Payment successful!</h3>
+            <div>Id.: <span th:text='${id}'></span></div>
+            <div>Status: <span th:text='${status}'></span></div>
+            <div>Date: <span th:text ='${date}'></span> </div>
+            <div>Amount: <span th:text='${amount/100}'></span></div>
+            <div>Currency: <span th:text='${currency}'></span></div>
+            <div>Charge id.: <span th:text='${chargeId}'></span></div>
+            <div>Balance transaction id.: <span th:text='${balance_transaction}'></span></div>
+
+            <a href='/'>Back    </a>
+    </body>
+</html>

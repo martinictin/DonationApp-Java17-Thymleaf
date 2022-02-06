@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:th='http://www.thymeleaf.org'>
+    <head>
+        <title>Checkout</title>
+        <style>
+            body {
+                font-family: 'arial';
+            }
+            #checkout-form input,
+            #checkout-form button {
+                display: block;
+                margin: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <form action='/charge' method='POST' id='checkout-form' th:object="${amount}">
+            <input type='text' th:field="*{amount}"  name='amount' />
+            <script
+                src='https://checkout.stripe.com/checkout.js' 
+                class='stripe-button'
+                th:attr='data-key=${stripePublicKey},
+                         data-amount=amount,
+                         data-currency=${currency}'
+                data-name='Nije definitivno baeldung'
+                data-description='Plz radi'>
+            </script>
+        </form>
+    </body>
+</html>

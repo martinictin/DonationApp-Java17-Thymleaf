@@ -38,9 +38,21 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="email-2">Short description</label>
-                                <input id="email-2" name="email" th:field="*{description}" type="text" class="form-control required email">
+                                <label for="description">Short description</label>
+                                <input id="description" name="description" th:field="*{description}" type="text" class="form-control required">
                             </div>
+
+                            <div class="form-group">
+                                <label for="publickey">Public Stripe API key</label>
+                                <input id="publickey" name="publickey" th:field="*{publicKey}" type="text" class="form-control required">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="secretkey">Secret Stripe API key</label>
+                                <input id="secretkey" name="secretkey" th:field="*{secretKey}" type="text" class="form-control required">
+                            </div>
+
+
 
 
 
