@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Donation</title>
+
+    <link rel="icon" type="image/x-icon" href="@{/assets/favicon.ico}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">Donation</a>
+    </div>
+    <div class="container" th:if="${#request?.userPrincipal?.name}">
+        <a class="navbar-brand" href="/registerDonationArticle">Add a donation</a>
+        <a class="navbar-brand" href="/userInvoices">Donation history</a>
+        <a class="navbar-brand" href="/userDonations">My donations</a>
+        <a class="navbar-brand" href="/logout">Logout</a>
+    </div>
+</nav>
+<header class="py-5 bg-light border-bottom mb-4">
+    <div class="container">
+        <div class="text-center my-5">
+            <h1 class="fw-bolder">Donation history</h1>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+        <tr th:each="invoice : ${invoices}">
+            <div class="row">
+                <div class="mx-auto"  style="width: 700px;">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div>Id: <td th:text="${invoice.transactionId}"></td></div>
+                            <div>Status: <td th:text="${invoice.status}"></td></div>
+                            <div>Date: <td th:text="${invoice.date}"></td></div>
+                            <div>Reciver: <td th:text="${invoice.receiver}"></td></div>
+                            <div>Amount: <td th:text="${invoice.amount}"></td></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </tr>
+</div>
+
+</body>
+</html>
