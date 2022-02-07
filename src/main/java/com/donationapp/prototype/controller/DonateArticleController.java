@@ -2,9 +2,11 @@ package com.donationapp.prototype.controller;
 
 import com.donationapp.prototype.model.ChargeRequest;
 import com.donationapp.prototype.model.DonateArticle;
+import com.donationapp.prototype.model.User;
 import com.donationapp.prototype.repository.DonateArticleRepository;
 import com.donationapp.prototype.service.DonateArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,6 +47,13 @@ public class DonateArticleController {
         donateArticleRepository.save(donateArticle);
         model.addAttribute("donateArticle",donateArticle);
         return "donationSaved";
+    }
+
+    @GetMapping("/userDonations")
+    public String donations(Model model,@AuthenticationPrincipal User user)
+    {
+        model.addAttribute("donations",donateArticleRepository.findAllByCreatedBy(user.getUsername()));
+        return "userDonations";
     }
 
 

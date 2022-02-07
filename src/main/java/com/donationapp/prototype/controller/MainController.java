@@ -54,7 +54,7 @@ public class MainController {
 
     @GetMapping("/result")
     public String input(Model model) {
-        model.addAttribute("amount",new ChargeRequest() ); // in cents
+        model.addAttribute("amount",new ChargeRequest() );
         return "index";
     }
 
@@ -78,7 +78,7 @@ public class MainController {
         invoice.setStatus(charge.getStatus());
         invoice.setDonator(chargeRequest.getDonation());
         invoice.setReceiver(chargeRequest.getDonatorName());
-        invoice.setAmount(String.valueOf(charge.getAmount()/100));
+        invoice.setAmount(charge.getAmount() / 100 + " Eur");
         invoiceRepository.save(invoice);
         return "result";
     }

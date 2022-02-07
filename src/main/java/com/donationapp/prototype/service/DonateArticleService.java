@@ -54,6 +54,7 @@ public class DonateArticleService implements IDonateArticleService {
             donateArticle.setDescription(rs.getString("description"));
             donateArticle.setPublicKey(rs.getString("public_key"));
             donateArticle.setSecretKey(rs.getString("secret_key"));
+            donateArticle.setCreatedBy(rs.getString("created_by"));
             donateArticleRepository.save(donateArticle);
         }
         st.close();
