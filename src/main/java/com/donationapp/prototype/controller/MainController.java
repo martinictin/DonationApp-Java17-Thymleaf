@@ -1,7 +1,9 @@
 package com.donationapp.prototype.controller;
 
 import com.donationapp.prototype.model.ChargeRequest;
+import com.donationapp.prototype.model.Invoice;
 import com.donationapp.prototype.repository.DonateArticleRepository;
+import com.donationapp.prototype.repository.InvoiceRepository;
 import com.donationapp.prototype.repository.UserRepository;
 import com.donationapp.prototype.service.DonateArticleService;
 import com.donationapp.prototype.service.StripeService;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.dnd.InvalidDnDOperationException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -36,21 +39,13 @@ public class MainController {
     @Autowired
     StripeService paymentsService;
 
-    /*
-    @GetMapping("/")
-    public String viewMainPage(Model model) throws ClassNotFoundException, SQLException {
-        userService.fromDbToRepo();
-        donateArticleService.fromDbToRepo();
-        model.addAttribute("user",userRepository.findAll());
-        model.addAttribute("donateArticle",donateArticleRepository.findAll());
-        return "index";
-    }
+    @Autowired
+    InvoiceRepository invoiceRepository;
 
-     */
+
     @GetMapping("/")
     public String posts(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
                         @RequestParam(value = "size", required = false, defaultValue = "5") int size, Model model) throws SQLException, ClassNotFoundException {
-        userService.fromDbToRepo();
         donateArticleService.fromDbToRepo();
         model.addAttribute("posts", donateArticleService.getPage(pageNumber, size));
         model.addAttribute("amount", new ChargeRequest());
@@ -77,6 +72,14 @@ public class MainController {
         model.addAttribute("date",formatter.format(calendar.getTime()));
         model.addAttribute("amount",charge.getAmount());
         model.addAttribute("currency",chargeRequest.getCurrency());
+        Invoice invoice = new Invoice();
+        invoice.setTransactionId(charge.getId());
+        invoice.setDate(formatter.format(calendar.getTime()));
+        invoice.setStatus(charge.getStatus());
+        invoice.setDonator(chargeRequest.getDonation());
+        invoice.setReceiver(chargeRequest.getDonatorName());
+        invoice.setAmount(String.valueOf(charge.getAmount()/100));
+        invoiceRepository.save(invoice);
         return "result";
     }
 

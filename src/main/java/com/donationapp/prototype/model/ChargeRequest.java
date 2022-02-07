@@ -16,6 +16,8 @@ public class ChargeRequest {
     private Currency currency;
     private String stripeToken ;
     private String secretKey;
+    private String donatorName;
+    private String donation;
 
     
     

@@ -15,11 +15,15 @@ public class Invoice {
     @Column
     private String status;
     @Column
-    private Date date;
+    private String date;
     @Column
     private String donator;
     @Column
     private String receiver;
+    @Column
+    private String amount;
+    @Column
+    private String transactionId;
 
 
 }

@@ -44,7 +44,7 @@ public class DonateArticleService implements IDonateArticleService {
         String myUrl = "jdbc:mysql://localhost:3306/donationdb";
         Class.forName(myDriver);
         String query = "SELECT * FROM donate_article";
-        Connection conn = DriverManager.getConnection(myUrl, "root", "admin");
+        Connection conn = DriverManager.getConnection(myUrl, "root", "12345");
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery(query);
         while (rs.next()) {

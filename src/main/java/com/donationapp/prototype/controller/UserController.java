@@ -1,5 +1,6 @@
 package com.donationapp.prototype.controller;
 
+import com.donationapp.prototype.dto.LoginRequest;
 import com.donationapp.prototype.dto.SignUpRequest;
 import com.donationapp.prototype.model.User;
 import com.donationapp.prototype.repository.UserRepository;
@@ -57,10 +58,17 @@ public class UserController {
 
 
     @GetMapping("/login")
-    public String login() {
+    public String login(Model model) {
+        model.addAttribute("currentUser",new LoginRequest());
         return "login";
     }
 
+    @PostMapping("/login")
+    public String sendUser(Model model,LoginRequest loginRequest)
+    {
+        model.addAttribute("userUsername",loginRequest.getUsername());
+        return "index";
+    }
 
 
 }
