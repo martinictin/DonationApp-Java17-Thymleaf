@@ -1,6 +1,7 @@
 package com.donationapp.prototype.service;
 
 import com.donationapp.prototype.config.email.EmailSender;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,15 +12,15 @@ import org.springframework.stereotype.Service;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+@AllArgsConstructor
 @Service
 public class EmailService implements EmailSender {
 
-    JavaMailSender mailSender;
+    private final JavaMailSender mailSender;
 
     private final static Logger LOGGER= LoggerFactory.getLogger(EmailService.class);
 
-
-
+    
 
     @Override
     @Async

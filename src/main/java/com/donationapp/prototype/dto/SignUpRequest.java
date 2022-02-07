@@ -1,21 +1,17 @@
 package com.donationapp.prototype.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-
-import javax.persistence.Enumerated;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
+@NoArgsConstructor
 public class SignUpRequest {
 
-    private final String username;
-    private final String email;
-    private final String password;
-    @Enumerated
-    private final String role;
+    private  String username;
+    private  String email;
+    private  String password;
+
+
 }

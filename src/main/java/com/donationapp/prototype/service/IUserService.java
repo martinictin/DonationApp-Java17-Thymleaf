@@ -20,11 +20,11 @@ public interface IUserService extends UserDetailsService {
 
     void fromDbToRepo() throws SQLException, ClassNotFoundException;
 
-    UserDetails loadUserByEmail(String email) throws UsernameNotFoundException;
-
     String register(SignUpRequest request);
 
     String signUpUser(User user);
+
+    void setAdmin(SignUpRequest request);
 
     String buildEmail(String name, String link);
 
@@ -32,4 +32,5 @@ public interface IUserService extends UserDetailsService {
 
     int enableUser(String email);
 
+    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 }

@@ -89,12 +89,7 @@ public class UserService implements IUserService{
                 orElseThrow(()->new UsernameNotFoundException(String.format(USER_NOT_FOUND,username)));
     }
 
-    @Override
-    public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email).
-                orElseThrow(()->new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)));
-    }
-
+ 
     public String register(SignUpRequest request) {
         boolean isValidEmail = emailValidator.
                 test(request.getEmail());
@@ -113,7 +108,7 @@ public class UserService implements IUserService{
                 )
         );
 
-        String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
+        String link = "http://localhost:8080/confirm?token=" + token;
         emailSender.send(
                 request.getEmail(),
                 buildEmail(request.getUsername(), link));
@@ -147,6 +142,30 @@ public class UserService implements IUserService{
 
 
         return token;
+    }
+
+    public void setAdmin(SignUpRequest request){
+        User user=new User();
+        user.setUsername(request.getUsername());
+        user.setEmail(request.getEmail());
+        user.setUserPassword(request.getPassword());
+        boolean userExists = userRepository
+                .findByEmail(user.getEmail())
+                .isPresent();
+
+        if (userExists) {
+
+            throw new IllegalStateException("email already taken");
+        }
+
+        String encodedPassword = passwordEncoder.bCryptPasswordEncoder()
+                .encode(user.getPassword());
+
+        user.setUserPassword(encodedPassword);
+        user.setUserRole(ERole.ADMIN);
+        user.setEnabled(true);
+
+        userRepository.save(user);
     }
 
 

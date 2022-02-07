@@ -23,26 +23,16 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
             </ul>
         </div>
     </div>
 </nav>
 
 <div class="container">
-    <h1 class="mt-4">Account created </h1>
-    <p>User: <strong th:text="${user.username}"></strong></p>
-    <p>Email: <strong th:text="${user.email}"></strong></p>
+    <h1 class="mt-4">Account created! </h1>
+    <h2 class="mt-4">Confirm token sent on email</h2>
 
-    <a th:href="@{/}" class="btn btn-primary">Go back</a>
+    <a th:href="@{/login}" class="btn btn-primary">Go back</a>
 </div>
 </body>
 </html>

@@ -27,7 +27,7 @@
     <div class="col">
       <h2 class="mt-5">Create user</h2>
 
-      <form id="example-advanced-form" action="/registerUser" method="post" th:object="${user}">
+      <form id="example-advanced-form" action="/registerUser" method="post" th:object="${signup}">
         <fieldset>
           <legend>Account Information</legend>
 
@@ -45,7 +45,7 @@
 
               <div class="form-group">
                 <label for="password-2">Password</label>
-                <input id="password-2" name="password" th:field="*{userPassword}" type="password"  class="form-control required">
+                <input id="password-2" name="password" th:field="*{password}" type="password"  class="form-control required">
               </div>
 
               <div class="form-group">
