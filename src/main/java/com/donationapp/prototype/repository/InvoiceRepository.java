@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface InvoiceRepository extends JpaRepository<Invoice,Integer> {
-
     List<Invoice> findAllByDonator(String name);
+    void deleteInvoiceByInvoiceId(int id);
 }

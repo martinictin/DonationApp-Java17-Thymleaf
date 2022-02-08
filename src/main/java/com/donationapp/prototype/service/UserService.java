@@ -63,7 +63,7 @@ public class UserService implements IUserService{
         String myUrl ="jdbc:mysql://localhost:3306/donationdb";
         Class.forName(myDriver);
         String query = "SELECT * FROM users";
-        Connection conn = DriverManager.getConnection(myUrl, "root", "12345");
+        Connection conn = DriverManager.getConnection(myUrl, "root", "admin");
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery(query);
         while (rs.next())
