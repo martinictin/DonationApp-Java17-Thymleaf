@@ -25,4 +25,6 @@ public class DonateArticle {
     private String publicKey;
     @Column
     private String secretKey;
+    @Column
+    private String createdBy;
 }

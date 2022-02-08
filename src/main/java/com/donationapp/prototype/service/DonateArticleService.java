@@ -44,7 +44,7 @@ public class DonateArticleService implements IDonateArticleService {
         String myUrl = "jdbc:mysql://localhost:3306/donationdb";
         Class.forName(myDriver);
         String query = "SELECT * FROM donate_article";
-        Connection conn = DriverManager.getConnection(myUrl, "root", "admin");
+        Connection conn = DriverManager.getConnection(myUrl, "root", "12345");
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery(query);
         while (rs.next()) {
@@ -54,6 +54,7 @@ public class DonateArticleService implements IDonateArticleService {
             donateArticle.setDescription(rs.getString("description"));
             donateArticle.setPublicKey(rs.getString("public_key"));
             donateArticle.setSecretKey(rs.getString("secret_key"));
+            donateArticle.setCreatedBy(rs.getString("created_by"));
             donateArticleRepository.save(donateArticle);
         }
         st.close();
