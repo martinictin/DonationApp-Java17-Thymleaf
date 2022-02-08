@@ -9,9 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.PostUpdate;
+import javax.transaction.Transactional;
 import java.util.List;
 
 
@@ -52,6 +53,43 @@ public class DonateArticleController {
     @GetMapping("/userDonations")
     public String donations(Model model,@AuthenticationPrincipal User user)
     {
+        model.addAttribute("donations",donateArticleRepository.findAllByCreatedBy(user.getUsername()));
+        return "userDonations";
+    }
+
+    @Transactional
+    @RequestMapping(value = "/deleteDonation/{articleName}", method = RequestMethod.GET)
+    public String delete(@PathVariable String articleName,Model model,@AuthenticationPrincipal User user)
+    {
+        donateArticleRepository.deleteDonateArticleByArticleName(articleName);
+        model.addAttribute("donations",donateArticleRepository.findAllByCreatedBy(user.getUsername()));
+        return "userDonations";
+    }
+
+
+    @Transactional
+    @RequestMapping(value = "/updateDonation/{articleName}", method = RequestMethod.GET)
+    public String update(@PathVariable String articleName,Model model)
+    {
+        model.addAttribute("donations",donateArticleRepository.findByArticleName(articleName));
+        model.addAttribute("newDonation", new DonateArticle());
+        return "editDonation";
+    }
+
+    @Transactional
+    @RequestMapping(value = "/updateDonation/{articleName}", method = RequestMethod.POST)
+    public String updateDonation(@PathVariable String articleName,Model model,@ModelAttribute("donations") DonateArticle donateArticle,@AuthenticationPrincipal User user){
+        DonateArticle old = donateArticleRepository.findByArticleName(articleName);
+        old.setCreatedBy(donateArticle.getCreatedBy());
+        old.setArticleName(donateArticle.getArticleName());
+        old.setDescription(donateArticle.getDescription());
+        old.setPublicKey(donateArticle.getPublicKey());
+        old.setSecretKey(donateArticle.getSecretKey());
+        old.setUrl(donateArticle.getUrl());
+        old.setArticlePriceTarget(donateArticle.getArticlePriceTarget());
+        donateArticleRepository.save(old);
+
+        donateArticleRepository.deleteDonateArticleByArticleName(articleName);
         model.addAttribute("donations",donateArticleRepository.findAllByCreatedBy(user.getUsername()));
         return "userDonations";
     }

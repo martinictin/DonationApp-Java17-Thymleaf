@@ -38,6 +38,8 @@
                     <div class="card-body">
                         <div>Name: <td th:text="${donation.articleName}"></td></div>
                         <div>Description : <td th:text="${donation.description}"></td></div>
+                        <a th:href="@{/deleteDonation/{articleName}(articleName=${donation.articleName})}" methods="DELETE" class="btn btn-danger">Delete</a>
+                        <a th:href="@{/updateDonation/{articleName}(articleName=${donation.articleName})}" methods="UPDATE" class="btn btn-dark">Update</a>
                     </div>
                 </div>
             </div>

@@ -16,4 +16,6 @@ import java.util.List;
 public interface DonateArticleRepository extends JpaRepository<DonateArticle,Integer> {
     List<DonateArticle> findAllByArticleName(String name);
     List<DonateArticle> findAllByCreatedBy(String name);
+    void deleteDonateArticleByArticleName(String name);
+    DonateArticle findByArticleName(String name);
 }

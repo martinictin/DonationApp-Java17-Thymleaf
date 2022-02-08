@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Donation</title>
+
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+
+
+<div class="container">
+    <h1 class="mt-4">Donation created </h1>
+    <p>Name: <strong th:text="${donateArticle.articleName}"></strong></p>
+    <p>Description: <strong th:text="${donateArticle.description}"></strong></p>
+
+
+    <a th:href="@{/}" class="btn btn-primary">Go back</a>
+</div>
+</body>
+</html>
