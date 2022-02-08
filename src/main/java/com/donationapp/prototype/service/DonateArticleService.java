@@ -44,7 +44,7 @@ public class DonateArticleService implements IDonateArticleService {
         String myUrl = "jdbc:mysql://localhost:3306/donationdb";
         Class.forName(myDriver);
         String query = "SELECT * FROM donate_article";
-        Connection conn = DriverManager.getConnection(myUrl, "root", "12345");
+        Connection conn = DriverManager.getConnection(myUrl, "root", "admin");
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery(query);
         while (rs.next()) {
@@ -75,4 +75,18 @@ public class DonateArticleService implements IDonateArticleService {
         return new Paged<>(postPage, Paging.of(postPage.getTotalPages(), pageNumber, size));
     }
 
+    public DonateArticle getArticleById(int id) {
+        Optional < DonateArticle > optional = donateArticleRepository.findById(id);
+        DonateArticle donateArticle = null;
+        if (optional.isPresent()) {
+            donateArticle = optional.get();
+        } else {
+            throw new RuntimeException(" Article not found for id :: " + id);
+        }
+        return donateArticle;
+    }
+
+    public void deleteArticleById(int id) {
+        this.donateArticleRepository.deleteById(id);
+    }
 }

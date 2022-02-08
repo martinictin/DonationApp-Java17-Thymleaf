@@ -1,0 +1,54 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Admin</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<div class="container my-2">
+  <h1>Users</h1>
+
+  <a href="/admin/" class="btn btn-primary btn-sm mb-3">Back to panel</a>
+
+  <table border="1" class="table table-striped table-responsive-md">
+    <thead>
+    <tr>
+      <th>User Id</th>
+      <th>Name</th>
+      <th>E-mail</th>
+      <th>Role</th>
+      <th>Enabled</th>
+      <th>Locked</th>
+      <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+      <td th:text="${user.userId}"></td>
+      <td th:text="${user.username}"></td>
+      <td th:text="${user.email}"></td>
+      <td th:text="${user.userRole}"></td>
+      <td th:text="${user.enabled}"></td>
+      <td th:text="${user.locked}"></td>
+      <td>
+        <a th:href="@{/admin/users/{name}(name=${user.username})}" methods="DELETE" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
+</div>
+</div>
+</div>
+</body>
+
+</html>

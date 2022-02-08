@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login").permitAll()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/?logout").deleteCookies("remember-me").permitAll()
@@ -47,9 +47,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(daoAuthenticationProvider())
                 .inMemoryAuthentication()
-                .withUser("user").password(bCryptPasswordEncoder.encode("123")).roles("USER")
+                .withUser("admin").password(bCryptPasswordEncoder.encode("123")).roles("ADMIN")
                 .and()
-                .withUser("admin").password(bCryptPasswordEncoder.encode("123")).roles("ADMIN", "USER");
+                .withUser("user").password(bCryptPasswordEncoder.encode("123")).roles("USER");
+
 
     }
 
