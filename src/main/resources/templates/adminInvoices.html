@@ -24,7 +24,8 @@
       <th>Invoice Id</th>
       <th>Status</th>
       <th>Date</th>
-      <th>Receiver</th>
+      <th>Donation</th>
+      <th>Payed By</th>
       <th>Amount</th>
       <th>Edit</th>
     </tr>
@@ -35,6 +36,7 @@
       <td th:text="${invoice.status}"></td>
       <td th:text="${invoice.date}"></td>
       <td th:text="${invoice.receiver}"></td>
+      <td th:text="${invoice.donator}"></td>
       <td th:text="${invoice.amount}"></td>
       <td>
         <a th:href="@{/admin/invoices/{id}(id=${invoice.invoiceId})}" methods="DELETE" class="btn btn-danger">Delete</a>
