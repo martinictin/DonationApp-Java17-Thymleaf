@@ -16,6 +16,15 @@
     <a class="navbar-brand" href="/">Donation</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
   </div>
+  <div class="container" th:if="${#request?.userPrincipal?.name}">
+    <a class="navbar-brand" href="/registerDonationArticle">Add a donation</a>
+    <a class="navbar-brand" href="/userInvoices">Donation history</a>
+    <a class="navbar-brand" href="/userDonations">My donations</a>
+    <a class="navbar-brand" href="/logout">Logout</a>
+  </div>
+  <div class="container" th:unless="${#request?.userPrincipal?.name}">
+    <a class="navbar-brand" href="/login">Login</a>
+  </div>
 </nav>
 <header class="py-5 bg-light border-bottom mb-4">
   <div class="container">

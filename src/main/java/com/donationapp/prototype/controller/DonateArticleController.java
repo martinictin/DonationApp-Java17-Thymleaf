@@ -1,6 +1,6 @@
 package com.donationapp.prototype.controller;
 
-import com.donationapp.prototype.model.ChargeRequest;
+import com.donationapp.prototype.dto.ChargeRequest;
 import com.donationapp.prototype.model.DonateArticle;
 import com.donationapp.prototype.model.User;
 import com.donationapp.prototype.repository.DonateArticleRepository;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.PostUpdate;
 import javax.transaction.Transactional;
 import java.util.List;
 

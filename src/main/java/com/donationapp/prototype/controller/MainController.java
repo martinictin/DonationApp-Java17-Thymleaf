@@ -1,6 +1,6 @@
 package com.donationapp.prototype.controller;
 
-import com.donationapp.prototype.model.ChargeRequest;
+import com.donationapp.prototype.dto.ChargeRequest;
 import com.donationapp.prototype.model.Invoice;
 import com.donationapp.prototype.repository.DonateArticleRepository;
 import com.donationapp.prototype.repository.InvoiceRepository;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.dnd.InvalidDnDOperationException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

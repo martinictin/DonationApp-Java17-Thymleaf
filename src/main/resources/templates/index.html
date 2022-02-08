@@ -15,11 +15,19 @@
     <div class="container">
         <a class="navbar-brand" href="/">Donation</a>
     </div>
+
     <div class="container" th:if="${#request?.userPrincipal?.name}">
-        <a class="navbar-brand" href="/registerDonationArticle">Add a donation</a>
-        <a class="navbar-brand" href="/userInvoices">Donation history</a>
-        <a class="navbar-brand" href="/userDonations">My donations</a>
-        <a class="navbar-brand" href="/logout">Logout</a>
+        <div class="container" th:if="${#request.userPrincipal.name.equalsIgnoreCase('admin')}">
+            <a class="navbar-brand" href="/admin/">Admin</a>
+            <a class="navbar-brand" href="/registerDonationArticle">Add a donation</a>
+            <a class="navbar-brand" href="/logout">Logout</a>
+        </div>
+        <div class="container" th:unless="${#request.userPrincipal.name.equalsIgnoreCase('admin')}">
+            <a class="navbar-brand" href="/registerDonationArticle">Add a donation</a>
+            <a class="navbar-brand" href="/userInvoices">Donation history</a>
+            <a class="navbar-brand" href="/userDonations">My donations</a>
+            <a class="navbar-brand" href="/logout">Logout</a>
+        </div>
     </div>
     <div class="container" th:unless="${#request?.userPrincipal?.name}">
         <a class="navbar-brand" href="/login">Login</a>

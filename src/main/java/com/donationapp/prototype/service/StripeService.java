@@ -1,6 +1,6 @@
 package com.donationapp.prototype.service;
 
-import com.donationapp.prototype.model.ChargeRequest;
+import com.donationapp.prototype.dto.ChargeRequest;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;

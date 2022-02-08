@@ -1,4 +1,4 @@
-package com.donationapp.prototype.model;
+package com.donationapp.prototype.dto;
 
 import lombok.Data;
 import lombok.Getter;

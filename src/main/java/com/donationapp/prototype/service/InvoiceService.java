@@ -35,7 +35,7 @@ public class InvoiceService implements IInvoiceService {
         String myUrl ="jdbc:mysql://localhost:3306/donationdb";
         Class.forName(myDriver);
         String query = "SELECT * FROM invoice";
-        Connection conn = DriverManager.getConnection(myUrl, "root", "admin");
+        Connection conn = DriverManager.getConnection(myUrl, "root", "12345");
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery(query);
         while (rs.next())
